@@ -393,45 +393,13 @@ SELECT name,department, email FROM employee WHERE gender = 'Female' AND departme
 --11
 SELECT id,name,age,52-age AS years_of_service_left FROM employee WHERE age IS NOT NULL;
 --12
-SELECT id,name,salary,salary,
+SELECT id,name,salary,salary,date_of_joining,
   CASE
     WHEN salary >=75000 THEN 'HIGH PAID'
     WHEN salary >=50000 AND salary<75000 THEN 'MEDIUM PAID'
     WHEN salary < 50000 THEN 'LOW PAID'
- END AS pay_bucket  FROM employee;
+ END AS pay_bucket  FROM employee;
 
 
---what is average  0f ages of all the employees departmentwise
-
-SELECT department AVG(age) FROM employee GROUP BY department;
 
 
---  WHERE + GROUP BY
---how many female and male are working under HR department
-
-SELECT department, COUNT(*) FROM employee WHERE gender = 'Female' GROUP BY department;
-
-SELECT department , COUNT(*) FROM employee WHERE age>32 AND gender = 'Male' GROUP BY department;
-
-
--- GROUP BY + ORDER BY
-SELECT department, ROUND(AVG(salary)) FROM employee GROUP BY department;
-
-SELECT gender, SUM(salary) FROM employee GROUP BY gender ORDER BY SUM(salary) DESC;
-
-
---HAVING Clause
---use: Is used to filter GROUPS 
---GROUP BY + HAVING (is like WHERE clause , but for groups)
-
-SELECT department,AVG(age) FROM employee GROUP BY department HAVING AVG(age) > 32;
-
-
--- If you have different clauses in a single query the following is the order of writing them.
--- SELECT -> FROM -> WHERE -> GROUP BY  -> HAVING -> ORDER BY 
-
-SELECT department,AVG(salary) FROM employee WHERE gender = 'Male' GROUP BY department HAVING AVG(salary) >60000 ORDER BY DESC;
-
--- GROUP BY: multiple
-
-SELECT department,gender,COUNT(*) FROM employee GROUP BY department,gender;
