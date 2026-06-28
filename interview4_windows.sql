@@ -17,8 +17,3 @@
  SELECT id,name,age,salary ,department, ROW_NUMBER() OVER(ORDER BY SALARY DESC) AS rn FROM EMPLOYEE WHERE SALARY IS NOT NULL;
  
  
--- Aggregate Functions can also be used as window functions
---AVG(), SUM(), MAX(), MIN(), COUNT()
---they can be paired with partition by to apply statistics on different groups
-
-SELECT AVG(SALARY) FROM EMPLOYEE GROUP BY DEPARTMENT;
